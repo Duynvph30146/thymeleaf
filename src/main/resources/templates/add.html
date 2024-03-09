@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>add</h1>
+<form th:action="@{/add}" th:object="${hd}" method="post">
+    <p>Ngày lập:
+        <input type="date" th:field="*{ngaylap}">
+    </p>
+    <p>Name:
+        <input th:field="*{nguoilap}" placeholder="nguoilap">
+    </p>
+    <p>Ngày thanh toán:
+        <input type="date" th:field="*{ngaythanhtoan}">
+    </p>
+    <p>Mã khách hàng:
+        <select th:field="*{khachhang.makhachhang}">
+            <option th:each="kh : ${dsKH}" th:value="${kh.makhachhang}" th:text="${kh.tenkhachhang}"></option>
+        </select>
+    </p>
+    <button>Add</button>
+</form>
+
+
+</body>
+</html>

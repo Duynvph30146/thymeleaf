@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:method="get" th:object="${tim}">
+    <p>Key:
+        <input th:field="*{key}">
+    </p>
+    <p>ngaybd
+        <input  type="date" th:field="*{ngaybd}">
+    </p>
+    <p>ngaykt
+        <input  type="date" th:field="*{ngaykt}">
+    </p>
+    <button>tim</button>
+</form>
+
+
+
+
+
+
+
+
+<table border="1">
+    <tr>
+        <th>stt</th>
+        <th>mahoadon</th>
+        <th>ngaylap</th>
+        <th>nguoilap</th>
+        <th>ngaythanhtoan</th>
+        <th>makhachhang</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="hd,stt: ${page.content}">
+        <td th:text="${stt.index+1}"></td>
+        <td th:text="${hd.mahoadon}"></td>
+        <td th:text="${hd.ngaylap}"></td>
+        <td th:text="${hd.nguoilap}"></td>
+        <td th:text="${hd.ngaythanhtoan}"></td>
+        <td th:text="${hd.khachhang.makhachhang}"></td>
+        <td>
+            <a th:href="@{/edit/{mahoadon}(mahoadon=${hd.mahoadon})}">Edit</a>
+            <a th:href="@{/delete/{mahoadon}(mahoadon=${hd.mahoadon})}" onclick="return xoa()">Delete</a>
+        </td>
+
+    </tr>
+</table>
+<a th:href="@{/list(p=${page.number-1})}">Prev</a>
+<a th:href="@{/list(p=${page.number+1})}">Next</a>
+
+
+<br>
+<a th:href="@{/add}">Add</a>
+</body>
+</html>
+<script>
+    function xoa() {
+        if (confirm("ban co muon xoa")) {
+            alert("xoa thanh cong");
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
